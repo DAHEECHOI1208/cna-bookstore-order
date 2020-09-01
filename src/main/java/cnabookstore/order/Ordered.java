@@ -1,7 +1,7 @@
 
 package cnabookstore.order;
 
-import cnabookstore.order.AbstractEvent;
+import cnabookstore.order.event.AbstractEvent;
 
 public class Ordered extends AbstractEvent {
 

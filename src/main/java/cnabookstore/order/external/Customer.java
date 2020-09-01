@@ -1,6 +1,6 @@
 package cnabookstore.order.external;
 
-public class Custormer {
+public class Customer {
 
     private Long id;
 

@@ -1,9 +1,9 @@
-package cnabookstore.order;
+package cnabookstore.order.event;
 
+import cnabookstore.order.OrderApplication;
 import cnabookstore.order.config.kafka.KafkaProcessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
@@ -47,7 +47,7 @@ public class AbstractEvent {
             /**
              * spring streams 방식
              */
-            KafkaProcessor processor = OrderApplication.applicationContext.getBean(KafkaProcessor.class);
+            KafkaProcessor processor = OrderApplication.getContext().getBean(KafkaProcessor.class);
             MessageChannel outputChannel = processor.outboundTopic();
 
             outputChannel.send(MessageBuilder

@@ -15,4 +15,7 @@ public class OrderApplication {
     public static void main(String[] args) {
         applicationContext = SpringApplication.run(OrderApplication.class, args);
     }
+    public static ApplicationContext getContext(){
+        return applicationContext;
+    }
 }

@@ -42,6 +42,7 @@ public class Order {
     public void onPreRemove(){
         OrderCanceled orderCanceled = new OrderCanceled();
         BeanUtils.copyProperties(this, orderCanceled);
+        orderCanceled.setStatus("CANCELED");
         orderCanceled.publishAfterCommit();
     }
 
