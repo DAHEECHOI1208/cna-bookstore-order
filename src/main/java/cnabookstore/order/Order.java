@@ -2,6 +2,7 @@ package cnabookstore.order;
 
 import javax.persistence.*;
 
+import cnabookstore.order.exeption.CannotCancelOrderException;
 import org.springframework.beans.BeanUtils;
 
 import cnabookstore.order.external.Book;
@@ -39,11 +40,17 @@ public class Order {
     }
 
     @PreRemove()
-    public void onPreRemove(){
-        OrderCanceled orderCanceled = new OrderCanceled();
-        BeanUtils.copyProperties(this, orderCanceled);
-        orderCanceled.setStatus("CANCELED");
-        orderCanceled.publishAfterCommit();
+    public void onPreRemove() throws CannotCancelOrderException {
+
+        if("ORDERED".equals(this.getOrderStatus())) {
+            OrderCanceled orderCanceled = new OrderCanceled();
+            BeanUtils.copyProperties(this, orderCanceled);
+            orderCanceled.setStatus("CANCELED");
+            orderCanceled.publishAfterCommit();
+        }
+        else{
+            throw new CannotCancelOrderException();
+        }
     }
 
 
