@@ -5,7 +5,6 @@ import javax.persistence.*;
 import cnabookstore.order.exeption.UnableToCancelOrderException;
 import cnabookstore.order.external.Customer;
 import cnabookstore.order.external.CustomerService;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.beans.BeanUtils;
 
 import cnabookstore.order.external.Book;
@@ -22,8 +21,6 @@ public class Order {
     private Long customerId;
     private Integer quantity;
     private String deliveryAddress;
-
-    @ColumnDefault("ORDERED")
     private String orderStatus;
 
     @PostPersist
