@@ -21,6 +21,8 @@ public class Order {
     private Long customerId;
     private Integer quantity;
     private String deliveryAddress;
+
+    @Column(columnDefinition = "varchar(255) default 'ORDERED'")
     private String orderStatus;
 
     @PostPersist
@@ -34,6 +36,10 @@ public class Order {
 
     @PrePersist
     public void onPrePersist(){
+
+        if("null".equals(orderStatus) || orderStatus == null){
+            orderStatus = "ORDERED";
+        }
 
         // mappings goes here
         Book book = OrderApplication.applicationContext.getBean(BookService.class)
