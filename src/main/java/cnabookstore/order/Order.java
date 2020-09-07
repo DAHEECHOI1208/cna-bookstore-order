@@ -3,6 +3,8 @@ package cnabookstore.order;
 import javax.persistence.*;
 
 import cnabookstore.order.exeption.UnableToCancelOrderException;
+import cnabookstore.order.external.Customer;
+import cnabookstore.order.external.CustomerService;
 import org.springframework.beans.BeanUtils;
 
 import cnabookstore.order.external.Book;
@@ -36,6 +38,9 @@ public class Order {
         // mappings goes here
         Book book = OrderApplication.applicationContext.getBean(BookService.class)
                 .queryBook(bookId);
+
+        Customer customer = OrderApplication.applicationContext.getBean(CustomerService.class)
+                .queryCustomer(customerId);
 
     }
 
