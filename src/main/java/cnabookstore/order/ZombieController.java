@@ -103,7 +103,6 @@ public class ZombieController {
                 + "========================================================================================        ";
         zombies.add(newZombie);
 
-        System.gc();
         Runtime r = Runtime.getRuntime();
         System.out.println("전체 힙 메모리" + r.totalMemory());
         long firstMemorySize = r.freeMemory();
