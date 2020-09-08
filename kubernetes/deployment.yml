@@ -5,7 +5,7 @@ metadata:
   labels:
     app: order
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: order
@@ -21,7 +21,7 @@ spec:
             - containerPort: 8080
           readinessProbe:
             httpGet:
-              path: '/actuator/health'
+              path: '/orders'
               port: 8080
             initialDelaySeconds: 12
             timeoutSeconds: 2
