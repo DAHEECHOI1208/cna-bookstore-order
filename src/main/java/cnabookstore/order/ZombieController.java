@@ -102,7 +102,14 @@ public class ZombieController {
                 + "========================================================================================        "
                 + "========================================================================================        ";
         zombies.add(newZombie);
-        System.out.println("====================== total zombies are : " + zombies.size());
+
+        System.gc();
+        Runtime r = Runtime.getRuntime();
+        System.out.println("전체 힙 메모리" + r.totalMemory());
+        long firstMemorySize = r.freeMemory();
+
+        출처: https://whiteship.tistory.com/1062 [Whiteship's Note]
+        System.out.println("total zombies are : " + zombies.size()+ " free memory size : "+ firstMemorySize);
 
     }
 
