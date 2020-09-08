@@ -37,6 +37,14 @@ spec:
         name: order
         ports:
         - containerPort: 8080
+        readinessProbe:
+          failureThreshold: 10
+          httpGet:
+            path: /orders
+            port: 8080
+          initialDelaySeconds: 12
+          periodSeconds: 5
+          timeoutSeconds: 2
         resources: {}
       - args:
         - proxy
