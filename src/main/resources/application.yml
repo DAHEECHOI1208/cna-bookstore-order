@@ -80,3 +80,4 @@ api:
     book: http://bookinventory:8080
     customer: http://customer:8080
     delivery: http://delivery:8080
+    point: http://point:8080

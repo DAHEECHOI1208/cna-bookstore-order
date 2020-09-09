@@ -3,12 +3,8 @@ package cnabookstore.order;
 import javax.persistence.*;
 
 import cnabookstore.order.exeption.UnableToCancelOrderException;
-import cnabookstore.order.external.Customer;
-import cnabookstore.order.external.CustomerService;
+import cnabookstore.order.external.*;
 import org.springframework.beans.BeanUtils;
-
-import cnabookstore.order.external.Book;
-import cnabookstore.order.external.BookService;
 
 @Entity
 @Table(name="Order_table")
@@ -18,7 +14,27 @@ public class Order {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long orderId;
     private Long bookId;
+
+    public Long getPointId() {
+        return pointId;
+    }
+
+    public void setPointId(Long pointId) {
+        this.pointId = pointId;
+    }
+
+    private Long pointId;
     private Long customerId;
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    private String customerName;
     private Integer quantity;
     private String deliveryAddress;
 
@@ -58,6 +74,14 @@ public class Order {
         }
         catch(Exception e){
             orderStatus = "Customer_Not_Verified";
+        }
+
+        try {
+            Point point = OrderApplication.applicationContext.getBean(PointService.class)
+                    .queryPoint(pointId);
+        }
+        catch(Exception e){
+            orderStatus = "Point_Not_Verified";
         }
     }
 
