@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -40,10 +41,10 @@ public class ZombieController {
     }
 
     @GetMapping({"/orderService/verifyCustomer/{customerId}"})
-    public String verifyCustomer(@PathVariable("customerId") Long customerId) {
+    public @ResponseBody String verifyCustomer(@PathVariable("customerId") Long customerId) {
 
         customerService.queryCustomer(customerId);
-        return "Success...";
+        return "Success.......";
 
     }
 
