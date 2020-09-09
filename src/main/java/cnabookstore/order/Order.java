@@ -26,12 +26,14 @@ public class Order {
     private String orderStatus;
 
     @PostPersist
-    public void onPostPersist(){
+    public void onPostPersist() {
 
-        Ordered ordered = new Ordered();
-        BeanUtils.copyProperties(this, ordered);
-        ordered.publishAfterCommit();
-
+        /* 주문 생성시 "ORDERED" 상태일 경우만 메시지 발송 */
+        if ("ORDERED".equals(orderStatus)){
+            Ordered ordered = new Ordered();
+            BeanUtils.copyProperties(this, ordered);
+            ordered.publishAfterCommit();
+        }
     }
 
     @PrePersist
@@ -42,12 +44,21 @@ public class Order {
         }
 
         // mappings goes here
-        Book book = OrderApplication.applicationContext.getBean(BookService.class)
-                .queryBook(bookId);
+        try {
+            Book book = OrderApplication.applicationContext.getBean(BookService.class)
+                    .queryBook(bookId);
+        }
+        catch(Exception e){
+            orderStatus = "Book_Not_Verified";
+        }
 
-        Customer customer = OrderApplication.applicationContext.getBean(CustomerService.class)
-                .queryCustomer(customerId);
-
+        try {
+            Customer customer = OrderApplication.applicationContext.getBean(CustomerService.class)
+                    .queryCustomer(customerId);
+        }
+        catch(Exception e){
+            orderStatus = "Customer_Not_Verified";
+        }
     }
 
     @PreRemove()
