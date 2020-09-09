@@ -19,6 +19,26 @@ public class Ordered extends AbstractEvent {
     private Long pointId;
     private Long customerId;
     private Integer quantity;
+
+    public Integer getPointValue() {
+        return pointValue;
+    }
+
+    public void setPointValue(Integer pointValue) {
+        this.pointValue = pointValue;
+    }
+
+    private Integer pointValue;
+
+    public String getPointUseYn() {
+        return pointUseYn;
+    }
+
+    public void setPointUseYn(String pointUseYn) {
+        this.pointUseYn = pointUseYn;
+    }
+
+    private String pointUseYn;
     private String deliveryAddress;
     private String orderStatus;
 
