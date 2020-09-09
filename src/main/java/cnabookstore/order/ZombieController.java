@@ -39,11 +39,10 @@ public class ZombieController {
 
     }
 
-    @GetMapping({"/orders/verifyCustomer/{customerId}"})
+    @GetMapping({"/orderService/verifyCustomer/{customerId}"})
     public String verifyCustomer(@PathVariable("customerId") Long customerId) {
 
         customerService.queryCustomer(customerId);
-                
         return "Success";
 
     }
