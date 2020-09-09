@@ -44,7 +44,7 @@ public class ZombieController {
     public @ResponseBody String verifyCustomer(@PathVariable("customerId") Long customerId) {
 
         customerService.queryCustomer(customerId);
-        return "Success............";
+        return "Success...............";
 
     }
 
