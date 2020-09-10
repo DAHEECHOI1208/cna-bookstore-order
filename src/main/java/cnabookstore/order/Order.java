@@ -36,6 +36,16 @@ public class Order {
 
     private String customerName;
     private Integer quantity;
+
+    public Integer getPointValue() {
+        return pointValue;
+    }
+
+    public void setPointValue(Integer pointValue) {
+        this.pointValue = pointValue;
+    }
+
+    private Integer pointValue;
     private String deliveryAddress;
 
     @Column(columnDefinition = "varchar(255) default 'ORDERED'")
